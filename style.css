@@ -1,0 +1,171 @@
+/* =========================================
+   VARIABLES Y RESET
+   ========================================= */
+:root {
+    --primary-color: #2c3e50;
+    --accent-color: #3498db;
+    --bg-color: #f4f6f7;
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --success-color: #27ae60;
+    --danger-color: #c0392b;
+    --spacing: 1rem;
+}
+
+* {
+    box-sizing: border-box; /* Vital para maquetación */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;      
+    display: flex;          
+    flex-direction: column;
+}
+
+/* Contenedor central para limitar el ancho en pantallas gigantes */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing);
+}
+
+/* =========================================
+   DISEÑO MÓVIL (BASE)
+   Todo se apila verticalmente (display: block por defecto)
+   ========================================= */
+
+/* Header */
+.app-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1.5rem 0;
+    margin-bottom: var(--spacing);
+    text-align: center;
+}
+
+.app-header h1 {
+    font-size: 1.5rem;
+}
+
+/* Secciones */
+section {
+    margin-bottom: 2rem;
+}
+
+h2 {
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+/* Tarjetas de Balance */
+.balance-grid {
+    display: flex;
+    flex-direction: column; /* Apiladas en móvil */
+    gap: 1rem;
+}
+
+.balance-card {
+    background: var(--card-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.balance-card.positivo .cantidad { color: var(--success-color); font-weight: bold; }
+.balance-card.negativo .cantidad { color: var(--danger-color); font-weight: bold; }
+
+/* Lista de Gastos */
+.lista-gastos {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.gasto-item {
+    background: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    overflow: hidden;
+    border-left: 5px solid var(--accent-color); /* Decoración visual */
+}
+
+.gasto-header {
+    padding: 1rem;
+    background-color: #ecf0f1;
+    display: flex;
+    justify-content: space-between; /* Título izq, Precio der */
+    align-items: center;
+    font-weight: bold;
+}
+
+.gasto-body {
+    padding: 1rem;
+}
+
+.label {
+    color: #7f8c8d;
+    font-size: 0.9em;
+}
+
+/* Footer */
+.app-footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: #ddd;
+    margin-top: 2rem;
+}
+
+/* =========================================
+   DISEÑO ADAPTATIVO (MEDIA QUERIES)
+   ========================================= */
+
+/* TABLET (min-width: 768px) */
+@media (min-width: 768px) {
+    
+    /* El balance ahora se pone en fila de 3 */
+    .balance-grid {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .balance-card {
+        flex: 1; /* Ocupan el mismo ancho */
+    }
+
+    /* Los gastos siguen en lista vertical pero más anchos */
+}
+
+/* ESCRITORIO (min-width: 1024px) */
+@media (min-width: 1024px) {
+    
+    /* Cambiamos el layout principal a 2 columnas */
+    main.container {
+        display: grid;
+        grid-template-columns: 1fr 3fr; /* Columna izq pequeña, der grande */
+        gap: 2rem;
+        align-items: start;
+        flex: 1;
+    }
+
+    /* El balance se queda en la columna izquierda, verticalmente */
+    .balance-grid {
+        flex-direction: column;
+    }
+
+    /* Ajuste visual para el grid de gastos en escritorio */
+    .lista-gastos {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 gastos por fila */
+        gap: 1.5rem;
+    }
+}

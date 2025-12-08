@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SplitWithMe - Informe de Gastos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="app-header">
+        <div class="container">
+            <h1>SplitWithMe</h1>
+            <p class="informe-meta">Informe de Gastos: <strong>Viaje de Fin de Curso</strong></p>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section id="balance" aria-labelledby="titulo-balance">
+            <h2 id="titulo-balance">Estado de Cuentas</h2>
+            
+            <div class="balance-grid">
+                <article class="balance-card positivo">
+                    <h3>Curro</h3>
+                    <p class="cantidad">+50.00€</p>
+                    <span class="estado">Le deben</span>
+                </article>
+
+                <article class="balance-card negativo">
+                    <h3>Lucas</h3>
+                    <p class="cantidad">-20.00€</p>
+                    <span class="estado">Debe</span>
+                </article>
+
+                <article class="balance-card neutro">
+                    <h3>María</h3>
+                    <p class="cantidad">0.00€</p>
+                    <span class="estado">En paz</span>
+                </article>
+            </div>
+        </section>
+
+        <section id="gastos" aria-labelledby="titulo-gastos">
+            <h2 id="titulo-gastos">Historial Detallado</h2>
+
+            <div class="lista-gastos">
+                <article class="gasto-item">
+                    <div class="gasto-header">
+                        <h3>Cena Restaurante Italiano</h3>
+                        <span class="precio">75.50€</span>
+                    </div>
+                    <div class="gasto-body">
+                        <p><span class="label">Fecha:</span> <time datetime="2025-11-13">13/11/2025</time></p>
+                        <p><span class="label">Pagado por:</span> <strong>Curro</strong></p>
+                        <p><span class="label">Participantes:</span> Curro, Lucas, María</p>
+                    </div>
+                </article>
+
+                <article class="gasto-item">
+                    <div class="gasto-header">
+                        <h3>Gasolina Ida</h3>
+                        <span class="precio">45.00€</span>
+                    </div>
+                    <div class="gasto-body">
+                        <p><span class="label">Fecha:</span> <time datetime="2025-11-10">10/11/2025</time></p>
+                        <p><span class="label">Pagado por:</span> <strong>Lucas</strong></p>
+                        <p><span class="label">Participantes:</span> Curro, Lucas, María</p>
+                    </div>
+                </article>
+
+                <article class="gasto-item">
+                    <div class="gasto-header">
+                        <h3>Compra Supermercado</h3>
+                        <span class="precio">32.15€</span>
+                    </div>
+                    <div class="gasto-body">
+                        <p><span class="label">Fecha:</span> <time datetime="2025-11-11">11/11/2025</time></p>
+                        <p><span class="label">Pagado por:</span> <strong>María</strong></p>
+                        <p><span class="label">Participantes:</span> María, Lucas</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2025 SplitWithMe - Práctica 3 IPM</p>
+    </footer>
+
+</body>
+</html>
