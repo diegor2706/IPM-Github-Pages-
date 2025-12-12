@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SplitWithMe - Informe de Gastos</title>
+    <title>IPM P3</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
     <header class="app-header">
         <div class="container">
             <h1>SplitWithMe</h1>
-            <p class="informe-meta">Informe de Gastos: <strong>Viaje de Fin de Curso</strong></p>
+            <p class="informe-meta">Informe de Gastos</p>
         </div>
     </header>
 
@@ -20,74 +20,94 @@
         <section id="balance" aria-labelledby="titulo-balance">
             <h2 id="titulo-balance">Estado de Cuentas</h2>
             
-            <div class="balance-grid">
-                <article class="balance-card positivo">
-                    <h3>Curro</h3>
-                    <p class="cantidad">+50.00€</p>
-                    <span class="estado">Le deben</span>
-                </article>
-
-                <article class="balance-card negativo">
-                    <h3>Lucas</h3>
-                    <p class="cantidad">-20.00€</p>
-                    <span class="estado">Debe</span>
-                </article>
-
-                <article class="balance-card neutro">
-                    <h3>María</h3>
-                    <p class="cantidad">0.00€</p>
-                    <span class="estado">En paz</span>
-                </article>
-            </div>
+            <button id="btn-add-amigo" class="btn-full-width action-green" aria-label="Añadir nuevo amigo">
+                + Añadir Amigo
+            </button>
+            
+            <div class="balance-grid" id="balance-container">
+                </div>
         </section>
 
         <section id="gastos" aria-labelledby="titulo-gastos">
             <h2 id="titulo-gastos">Historial Detallado</h2>
 
-            <div class="lista-gastos">
-                <article class="gasto-item">
-                    <div class="gasto-header">
-                        <h3>Cena Restaurante Italiano</h3>
-                        <span class="precio">75.50€</span>
-                    </div>
-                    <div class="gasto-body">
-                        <p><span class="label">Fecha:</span> <time datetime="2025-11-13">13/11/2025</time></p>
-                        <p><span class="label">Pagado por:</span> <strong>Curro</strong></p>
-                        <p><span class="label">Participantes:</span> Curro, Lucas, María</p>
-                    </div>
-                </article>
+            <button id="btn-add-gasto" class="btn-full-width action-blue" aria-label="Añadir nuevo gasto">
+                + Añadir Gasto
+            </button>
 
-                <article class="gasto-item">
-                    <div class="gasto-header">
-                        <h3>Gasolina Ida</h3>
-                        <span class="precio">45.00€</span>
-                    </div>
-                    <div class="gasto-body">
-                        <p><span class="label">Fecha:</span> <time datetime="2025-11-10">10/11/2025</time></p>
-                        <p><span class="label">Pagado por:</span> <strong>Lucas</strong></p>
-                        <p><span class="label">Participantes:</span> Curro, Lucas, María</p>
-                    </div>
-                </article>
-
-                <article class="gasto-item">
-                    <div class="gasto-header">
-                        <h3>Compra Supermercado</h3>
-                        <span class="precio">32.15€</span>
-                    </div>
-                    <div class="gasto-body">
-                        <p><span class="label">Fecha:</span> <time datetime="2025-11-11">11/11/2025</time></p>
-                        <p><span class="label">Pagado por:</span> <strong>María</strong></p>
-                        <p><span class="label">Participantes:</span> María, Lucas</p>
-                    </div>
-                </article>
+            <div class="lista-gastos" id="lista-gastos">
+                <p class="empty-state">No hay gastos registrados.</p>
             </div>
         </section>
 
     </main>
 
+    <dialog id="modal-gasto" class="modal">
+        <div class="modal-content">
+            <header class="modal-header">
+                <h2>Nuevo Gasto</h2>
+                <button id="btn-close-modal" class="close-btn" aria-label="Cerrar">&times;</button>
+            </header>
+            
+            <form id="form-gasto">
+                <div class="form-group">
+                    <label for="desc">Descripción</label>
+                    <input type="text" id="desc" name="desc" required placeholder="Ej. Cena restaurante">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fecha">Fecha</label>
+                        <input type="date" id="fecha" name="fecha" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="precio">Cantidad (€)</label>
+                        <input type="number" id="precio" name="precio" min="0.01" step="0.01" required placeholder="0.00">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="pagador">Pagado por</label>
+                    <select id="pagador" name="pagador" required></select>
+                </div>
+
+                <div class="form-group">
+                    <label>Participantes</label>
+                    <div class="checkbox-group" id="participantes-container"></div>
+                </div>
+
+                <footer class="modal-footer">
+                    <button type="button" id="btn-cancelar" class="btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn-primary">Guardar</button>
+                </footer>
+            </form>
+        </div>
+    </dialog>
+
+    <dialog id="modal-amigo" class="modal">
+        <div class="modal-content">
+            <header class="modal-header">
+                <h2>Añadir Amigo</h2>
+                <button id="btn-close-amigo" class="close-btn" aria-label="Cerrar">&times;</button>
+            </header>
+            <form id="form-amigo">
+                <div class="form-group">
+                    <label for="nombre-amigo">Nombre</label>
+                    <input type="text" id="nombre-amigo" name="nombre" required placeholder="Ej. Laura">
+                </div>
+                <footer class="modal-footer">
+                    <button type="button" id="btn-cancelar-amigo" class="btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn-primary">Añadir</button>
+                </footer>
+            </form>
+        </div>
+    </dialog>
+
     <footer class="app-footer">
         <p>&copy; 2025 SplitWithMe - Práctica 3 IPM</p>
     </footer>
+
+    <script src="script.js"></script>
 
 </body>
 </html>
